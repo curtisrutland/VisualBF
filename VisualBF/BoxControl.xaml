@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="VisualBF.BoxControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:VisualBF"
+    mc:Ignorable="d"
+    d:DesignHeight="40" d:DesignWidth="40">
+    <UserControl.Resources>
+        <local:IsActiveConverter x:Key="ConvertIsActive" />
+    </UserControl.Resources>
+    <Border x:Name="boxBorder">
+        <Grid x:Name="LayoutRoot" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="6" />
+            </Grid.RowDefinitions>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Index}" x:Name="indexTextBlock" />
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Value}" Grid.Row="1" />
+            <Rectangle Fill="{Binding Path=IsActive, Converter={StaticResource ConvertIsActive}}" Grid.Row="2" />
+        </Grid>
+    </Border>
+</UserControl>

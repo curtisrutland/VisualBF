@@ -1,0 +1,55 @@
+﻿<UserControl xmlns:my="clr-namespace:VisualBF"  xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"  x:Class="VisualBF.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="473" d:DesignWidth="691">
+
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Visual BF" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" >
+                <HyperlinkButton HorizontalAlignment="Right" Content="Add Source" Click="AddSourceHyperlinkButton_Click" />
+                <HyperlinkButton HorizontalAlignment="Right" Content="Execute" Click="ExecuteHyperlinkButton_Click" Margin="10,0,0,0" Visibility="Collapsed" x:Name="executeHyperlinkButton" />
+                <HyperlinkButton HorizontalAlignment="Right" Content="Execute" Click="ExecuteNonVisiblyHyperlinkButton_Click" Margin="10,0,0,0" Visibility="Collapsed" x:Name="executeNonVisiblyHyperlinkButton" />
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Memory Cells" />
+            <ScrollViewer Grid.Column="0" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <toolkit:WrapPanel  x:Name="dataWrapPanel" />
+            </ScrollViewer>
+            <TextBlock Text="Instructions" Grid.Column="1" HorizontalAlignment="Right" />
+            <ScrollViewer Grid.Column="1" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <toolkit:WrapPanel  x:Name="sourceWrapPanel" />
+            </ScrollViewer>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Output" />
+            <TextBox x:Name="outputTextBlock" IsReadOnly="True" TextWrapping="Wrap" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Grid.Row="1" />
+        </Grid>
+    </Grid>
+</UserControl>
+ 
