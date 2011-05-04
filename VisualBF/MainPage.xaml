@@ -4,26 +4,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="473" d:DesignWidth="691">
-
+    d:DesignHeight="488" d:DesignWidth="762">
     <Grid x:Name="LayoutRoot" Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="2*"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="Visual BF" />
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" >
-                <HyperlinkButton HorizontalAlignment="Right" Content="Add Source" Click="AddSourceHyperlinkButton_Click" />
-                <HyperlinkButton HorizontalAlignment="Right" Content="Execute" Click="ExecuteHyperlinkButton_Click" Margin="10,0,0,0" Visibility="Collapsed" x:Name="executeHyperlinkButton" />
-                <HyperlinkButton HorizontalAlignment="Right" Content="Execute" Click="ExecuteNonVisiblyHyperlinkButton_Click" Margin="10,0,0,0" Visibility="Collapsed" x:Name="executeNonVisiblyHyperlinkButton" />
-            </StackPanel>
-        </Grid>
+        <TextBlock Text="Visual BF Interactive Interpreter" FontSize="20" FontWeight="Bold" />
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -33,23 +23,109 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Memory Cells" />
+            <TextBlock Text="Memory Cells" HorizontalAlignment="Center" />
+            <TextBlock Text="Source" Grid.Column="1" HorizontalAlignment="Center" />
             <ScrollViewer Grid.Column="0" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                <toolkit:WrapPanel  x:Name="dataWrapPanel" />
+                <toolkit:WrapPanel  x:Name="dataWrapPanel" Background="LightGray" />
             </ScrollViewer>
-            <TextBlock Text="Instructions" Grid.Column="1" HorizontalAlignment="Right" />
             <ScrollViewer Grid.Column="1" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                <toolkit:WrapPanel  x:Name="sourceWrapPanel" />
+                <toolkit:WrapPanel  x:Name="sourceWrapPanel" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="LightGray" >
+                    <toolkit:ContextMenuService.ContextMenu>
+                        <toolkit:ContextMenu x:Name="sourceContextMenu" >
+                            <toolkit:MenuItem Header="Add Source From Clipboard" Click="AddSourceFromClipboard_Click" />
+                            <toolkit:MenuItem Header="Enter Source In Prompt" Click="EnterSourceInPrompt_Click" />
+                            <toolkit:MenuItem Header="Clear Source" Click="ClearSource_Click"/>
+                        </toolkit:ContextMenu>
+                    </toolkit:ContextMenuService.ContextMenu>
+                </toolkit:WrapPanel>
             </ScrollViewer>
         </Grid>
         <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Delay" Margin="2,0,5,0" VerticalAlignment="Center" />
+                <Slider x:Name="delaySlider" Grid.Column="1" Value="0.1" Maximum="0.5" ValueChanged="delaySlider_ValueChanged" />
+                <TextBlock Text=".1 s" x:Name="delayTextBlock" Grid.Column="2" Margin="5,0,2,0" VerticalAlignment="Center" />
+            </Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1" >
+                <Button x:Name="pauseButton" Click="pauseButton_Click">
+                    <Image Source="Images/pause.png" />
+                </Button>
+                <Button x:Name="playButton" Click="playButton_Click">
+                    <Image Source="Images/play.png"  />
+                </Button>
+                <Button x:Name="stepButton" Click="stepButton_Click">
+                    <Image Source="Images/step.png" />
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2" x:Name="opStackPanel">
+                <Button Tag="&lt;" Click="OpButton_Click" Width="30">
+                    <Viewbox>
+                        <TextBlock Text="&lt;" />
+                    </Viewbox>
+                </Button>
+                <Button Tag="&gt;" Click="OpButton_Click" Width="30">
+                    <Viewbox>
+                        <TextBlock Text="&gt;" />
+                    </Viewbox>
+                </Button>
+                <Button Tag="+" Click="OpButton_Click" Width="30">
+                    <Viewbox>
+                        <TextBlock Text="+" />
+                    </Viewbox>
+                </Button>
+                <Button Tag="-" Click="OpButton_Click" Width="30">
+                    <Viewbox>
+                        <TextBlock Text="-" />
+                    </Viewbox>
+                </Button>
+                <Button Tag="." Click="OpButton_Click" Width="30">
+                    <Viewbox>
+                        <TextBlock Text="." />
+                    </Viewbox>
+                </Button>
+                <Button Tag="," Click="OpButton_Click" Width="30">
+                    <Viewbox>
+                        <TextBlock Text="," />
+                    </Viewbox>
+                </Button>
+                <Button Tag="[" Click="OpButton_Click" Width="30">
+                    <Viewbox>
+                        <TextBlock Text="[" />
+                    </Viewbox>
+                </Button>
+                <Button Tag="]" Click="OpButton_Click" Width="30">
+                    <Viewbox>
+                        <TextBlock Text="]" />
+                    </Viewbox>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <TextBlock Text="Output" />
-            <TextBox x:Name="outputTextBlock" IsReadOnly="True" TextWrapping="Wrap" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Grid.Row="1" />
+            <TextBox x:Name="outputTextBlock" IsReadOnly="True" TextWrapping="Wrap" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Grid.Row="1" AcceptsReturn="True" />
+            <TextBlock Text="Input (Must be entered BEFORE execution)" Grid.Column="1"/>
+            <TextBox x:Name="inputTextBlock" IsReadOnly="False" TextWrapping="Wrap" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Grid.Row="1" AcceptsReturn="True" Grid.Column="1"/>
         </Grid>
+        <TextBlock Text="CurtisRutland.com" Grid.Row="4" HorizontalAlignment="Left" />
+        <HyperlinkButton Content="About" Click="About_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="4" />
     </Grid>
 </UserControl>
  
