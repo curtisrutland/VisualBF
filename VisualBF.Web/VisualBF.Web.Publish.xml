@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="ftp://curtisrutland.com" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FTP" replaceMatchingFiles="True" userName="curtisrutland" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="ClientBin/Web.config" publishTime="05/06/2011 12:24:35" />
+    <file relUrl="ClientBin/VisualBF.xap" publishTime="05/06/2011 12:23:19" />
+    <file relUrl="Web.config" publishTime="05/06/2011 12:25:14" />
+    <file relUrl="Silverlight.js" publishTime="05/03/2011 15:02:00" />
+    <file relUrl="VisualBFTestPage.aspx" publishTime="05/03/2011 15:02:00" />
+    <file relUrl="bin/VisualBF.Web.dll" publishTime="05/06/2011 12:24:43" />
+    <file relUrl="VisualBFTestPage.html" publishTime="05/03/2011 15:01:59" />
+    <file relUrl="bin/VisualBF.Web.pdb" publishTime="05/06/2011 12:24:43" />
+  </publishProfile>
+</publishData>
