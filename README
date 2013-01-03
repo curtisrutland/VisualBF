@@ -1,4 +1,4 @@
-This is a visual, interactive [Brainf***](http://en.wikipedia.org/wiki/Brainfuck) interpreter. This was created for a contest, not for practical use. Brainf*** is a minimalist programming language consisting of only eight commands, each represented by a single character.
+This is a visual, interactive Brainf*** interpreter. This was created for a contest, not for practical use. Brainf*** is a minimalist programming language consisting of only eight commands, each represented by a single character.
 
 See this in action at: http://vbf.curtisrutland.com
 
