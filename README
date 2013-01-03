@@ -1,6 +1,6 @@
-See this in action at:
+This is a visual, interactive [Brainf***](http://en.wikipedia.org/wiki/Brainfuck) interpreter. This was created for a contest, not for practical use.
 
-http://vbf.curtisrutland.com
+See this in action at: http://vbf.curtisrutland.com
 
 Here's a test program you can enter or paste in:
 
