@@ -1,7 +1,5 @@
 This is a visual, interactive Brainf*** interpreter. This was created for a contest, not for practical use. Brainf*** is a minimalist programming language consisting of only eight commands, each represented by a single character.
 
-See this in action at: http://vbf.curtisrutland.com
-
 Here's a test program you can enter or paste in:
 
 +++++ +++++             initialize counter (cell #0) to 10
